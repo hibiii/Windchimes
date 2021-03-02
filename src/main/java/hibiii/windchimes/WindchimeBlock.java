@@ -9,7 +9,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -36,10 +35,7 @@ public class WindchimeBlock extends Block implements BlockEntityProvider {
 		BlockEntity i = world.getBlockEntity(pos);
 		if(i instanceof WindchimeBlockEntity) {
 			if(world.getBlockState(pos.down()).isAir()) {
-				world.playSound(null, pos, Windchimes.CHIMES_SOUND, SoundCategory.RECORDS,
-						0.5f + world.random.nextFloat() * 0.3f,
-						0.6f + world.random.nextFloat() * 0.4f);
-				((WindchimeBlockEntity)i).ring();
+				((WindchimeBlockEntity)i).ring(1);
 			}
 		} else {
 			i.markRemoved();

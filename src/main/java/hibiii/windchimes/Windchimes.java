@@ -13,8 +13,10 @@ import net.minecraft.util.registry.Registry;
 
 public class Windchimes implements ModInitializer {
 
-	public static final Identifier CHIMES_SOUND_ID = new Identifier("windchimes:chimes");
-	public static final SoundEvent CHIMES_SOUND = new SoundEvent(CHIMES_SOUND_ID);
+	public static final Identifier CHIMES_SOUND_LOUD_ID = new Identifier("windchimes:loud_chimes");
+	public static final SoundEvent CHIMES_SOUND_LOUD = new SoundEvent(CHIMES_SOUND_LOUD_ID);
+	public static final Identifier CHIMES_SOUND_QUIET_ID = new Identifier("windchimes:quiet_chimes");
+	public static final SoundEvent CHIMES_SOUND_QUIET = new SoundEvent(CHIMES_SOUND_QUIET_ID);
 	public static final Identifier CHIME_ID = new Identifier("windchimes:chime");
 	public static final WindchimeBlock CHIME = new WindchimeBlock(
 			FabricBlockSettings.of(Material.METAL)
@@ -29,7 +31,8 @@ public class Windchimes implements ModInitializer {
 	
 	@Override
 	public void onInitialize() {
-		Registry.register(Registry.SOUND_EVENT, CHIMES_SOUND_ID, CHIMES_SOUND);
+		Registry.register(Registry.SOUND_EVENT, CHIMES_SOUND_LOUD_ID, CHIMES_SOUND_LOUD);
+		Registry.register(Registry.SOUND_EVENT, CHIMES_SOUND_QUIET_ID, CHIMES_SOUND_QUIET);
         Registry.register(Registry.BLOCK, CHIME_ID, CHIME);
         Registry.register(Registry.ITEM, CHIME_ID, new BlockItem(CHIME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
         CHIME_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, CHIME_ID, BlockEntityType.Builder.create(WindchimeBlockEntity::new, CHIME).build(null));
