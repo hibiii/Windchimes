@@ -6,13 +6,13 @@ import net.minecraft.util.Tickable;
 
 public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 	public int ringingTicks;
-	public boolean ringing;
 	protected int ticksToNextRing;
+	protected int baselineRingTicks;
 	public WindchimeBlockEntity() {
 		super(Windchimes.CHIME_BLOCK_ENTITY);
 		ringingTicks = 0;
-		ringing = false;
 		ticksToNextRing = 40;
+		baselineRingTicks = 0;
 	}
 	public void ring(int isLoud) {
 		world.addSyncedBlockEvent(pos, Windchimes.CHIME, 1, isLoud);
@@ -25,30 +25,54 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 			if (data == 0) {
 				ringingTicks = 30;
 				world.playSound(null, pos, Windchimes.CHIMES_SOUND_QUIET, SoundCategory.RECORDS,
-						0.5f + world.random.nextFloat() * 0.3f,
+						0.9f + world.random.nextFloat() * 0.2f,
 						0.8f + world.random.nextFloat() * 0.4f);
 			}
 			else {
 				ringingTicks = 140;
 				world.playSound(null, pos, Windchimes.CHIMES_SOUND_LOUD, SoundCategory.RECORDS,
-						0.7f + world.random.nextFloat() * 0.3f,
+						0.9f + world.random.nextFloat() * 0.2f,
 						0.8f + world.random.nextFloat() * 0.4f);
 			}
-			return ringing = true;
+			return true;
 		}
         return super.onSyncedBlockEvent(type, data);
     }
 	@Override
 	public void tick() {
-		if(ringing)
-			ringingTicks--;
-		if(ringingTicks <= 0) {
-			ringing = false;
-			ringingTicks = 0;
+		if(world.isClient) {
+			if(ringingTicks > baselineRingTicks)
+				ringingTicks--;
+			if(ringingTicks < baselineRingTicks) {
+				ringingTicks = baselineRingTicks;
+			}
+			if(world.isRaining()) {
+				if(world.isThundering())
+					baselineRingTicks = 13;
+				else
+					baselineRingTicks = 6;
+			} else {
+				if(world.isDay())
+					baselineRingTicks = 0;
+				else
+					baselineRingTicks = 3;
+			}
+			return;
 		}
 		if(--ticksToNextRing <= 0) {
 			ring(world.random.nextInt(0xff) >> 5);
-			ticksToNextRing = 400 + world.random.nextInt(3600);
+			ticksToNextRing = 0;
+			if(world.isRaining()) {
+				if(world.isThundering())
+					ticksToNextRing += world.random.nextInt(200);       // 0 - 10s
+				else
+					ticksToNextRing += 100 + world.random.nextInt(600); // 5 - 35s
+			} else {
+				if(world.isDay())
+					ticksToNextRing += 300 + world.random.nextInt(2100); // 15s - 2mins
+				else
+					ticksToNextRing += 100 + world.random.nextInt(700); // 5 - 40s
+			}
 		}
 	}
 }

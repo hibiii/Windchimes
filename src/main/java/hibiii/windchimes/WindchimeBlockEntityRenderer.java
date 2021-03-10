@@ -21,19 +21,19 @@ public class WindchimeBlockEntityRenderer extends BlockEntityRenderer<WindchimeB
 		super(dispatcher);
 		this.platform = new ModelPart(32, 32, 0, 0);
 		platform.setPivot(8f, 16f, 8f);
-		platform.setTextureOffset(18, 3).addCuboid(-0.5F, 0.0F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);   // Hanger
-		platform.setTextureOffset(0, 0).addCuboid(-3.0F, -1.0F, -3.0F, 6.0F, 1.0F, 6.0F, 0.0F, false);  // Support
+		platform.setTextureOffset(18, 3).addCuboid(-0.5F, -1.0F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);   // Hanger
+		platform.setTextureOffset(0, 0).addCuboid(-3.0F, -2.0F, -3.0F, 6.0F, 1.0F, 6.0F, 0.0F, false);  // Support
 		this.rods1 = new ModelPart(32, 32, 0, 0);
 		rods1.setPivot(8f, 14f, 8f);
-		rods1.setTextureOffset(0, 7).addCuboid(-2.0F, -19.0F, -2.0F, 1.0F, 15.0F, 1.0F, 0.0F, false); // Rod NW
-		rods1.setTextureOffset(12, 7).addCuboid(1.0F, -13.0F, 1.0F, 1.0F, 9.0F, 1.0F, 0.0F, false); // Rod SE
+		rods1.setTextureOffset(0, 7).addCuboid(-2.0F, -21.0F, -2.0F, 1.0F, 15.0F, 1.0F, 0.0F, false); // Rod NW
+		rods1.setTextureOffset(12, 7).addCuboid(1.0F, -15.0F, 1.0F, 1.0F, 9.0F, 1.0F, 0.0F, false); // Rod SE
 		this.rods2 = new ModelPart(32, 32, 0, 0);
 		rods2.setPivot(8f, 14f, 8f);
-		rods2.setTextureOffset(8, 7).addCuboid(1.0F, -15.0F, -2.0F, 1.0F, 11.0F, 1.0F, 0.0F, false); // Rod NE
-		rods2.setTextureOffset(4, 7).addCuboid(-2.0F, -17.0F, 1.0F, 1.0F, 13.0F, 1.0F, 0.0F, false); // Rod SW
+		rods2.setTextureOffset(8, 7).addCuboid(1.0F, -17.0F, -2.0F, 1.0F, 11.0F, 1.0F, 0.0F, false); // Rod NE
+		rods2.setTextureOffset(4, 7).addCuboid(-2.0F, -19.0F, 1.0F, 1.0F, 13.0F, 1.0F, 0.0F, false); // Rod SW
 		this.clapper = new ModelPart(32, 32, 0, 0);
 		clapper.setPivot(8f, 14f, 8f);
-		clapper.setTextureOffset(18, 0).addCuboid(-1.0F, -11.0F, -1.0F, 2.0F, 1.0F, 2.0F, 0.0F, false);  // Clapper
+		clapper.setTextureOffset(18, 0).addCuboid(-1.0F, -13.0F, -1.0F, 2.0F, 1.0F, 2.0F, 0.0F, false);  // Clapper
 	}
 
 	@Override
