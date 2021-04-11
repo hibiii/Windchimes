@@ -1,33 +1,33 @@
 {
-  "schemaVersion": 1,
-  "id": "windchimes",
-  "version": "1.0.0-alpha.2",
+	"schemaVersion": 1,
+	"id": "windchimes",
+	"version": "1.0.0-alpha.2",
 
-  "name": "Windchimes",
-  "description": "Gentle wind chimes that, well, chime on the wind.",
-  "authors": [
-    "Hibiii"
-  ],
-  "contact": {
-    "discord": "Hibiii#5726"
-  },
+	"name": "Windchimes",
+	"description": "Gentle wind chimes that, well, chime on the wind.",
+	"authors": [
+		"Hibiii"
+	],
+	"contact": {
+		"discord": "Hibiii#5726"
+	},
 
-  "license": "Unlicense",
-  "icon": "assets/windchimes/icon.png",
+	"license": "Unlicense",
+	"icon": "assets/windchimes/icon.png",
 
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "hibiii.windchimes.Initializer"
-    ],
-    "client": [
-      "hibiii.windchimes.ClientInitializer"
-    ]
-  },
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"hibiii.windchimes.Initializer"
+		],
+		"client": [
+			"hibiii.windchimes.ClientInitializer"
+		]
+	},
 
-  "depends": {
-    "fabricloader": ">=0.7.4",
-    "fabric": "*",
-    "minecraft": "1.16.x"
-  }
+	"depends": {
+		"fabricloader": ">=0.7.4",
+		"fabric": "*",
+		"minecraft": "1.16.x"
+	}
 }
