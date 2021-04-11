@@ -9,13 +9,13 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 	protected int ticksToNextRing;
 	protected int baselineRingTicks;
 	public WindchimeBlockEntity() {
-		super(Windchimes.CHIME_BLOCK_ENTITY);
+		super(Initializer.CHIME_BLOCK_ENTITY);
 		ringingTicks = 0;
 		ticksToNextRing = 40;
 		baselineRingTicks = 0;
 	}
 	public void ring(int isLoud) {
-		world.addSyncedBlockEvent(pos, Windchimes.CHIME, 1, isLoud);
+		world.addSyncedBlockEvent(pos, Initializer.CHIME, 1, isLoud);
 	}
 	
 	
@@ -24,13 +24,13 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 		if(type == 1) {
 			if (data == 0) {
 				ringingTicks = 30;
-				world.playSound(null, pos, Windchimes.CHIMES_SOUND_QUIET, SoundCategory.RECORDS,
+				world.playSound(null, pos, Initializer.CHIMES_SOUND_QUIET, SoundCategory.RECORDS,
 						0.9f + world.random.nextFloat() * 0.2f,
 						0.8f + world.random.nextFloat() * 0.4f);
 			}
 			else {
 				ringingTicks = 140;
-				world.playSound(null, pos, Windchimes.CHIMES_SOUND_LOUD, SoundCategory.RECORDS,
+				world.playSound(null, pos, Initializer.CHIMES_SOUND_LOUD, SoundCategory.RECORDS,
 						0.9f + world.random.nextFloat() * 0.2f,
 						0.8f + world.random.nextFloat() * 0.4f);
 			}

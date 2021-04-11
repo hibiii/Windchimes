@@ -11,7 +11,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class Windchimes implements ModInitializer {
+public class Initializer implements ModInitializer {
 
 	public static final Identifier CHIMES_SOUND_LOUD_ID = new Identifier("windchimes:loud_chimes");
 	public static final SoundEvent CHIMES_SOUND_LOUD = new SoundEvent(CHIMES_SOUND_LOUD_ID);

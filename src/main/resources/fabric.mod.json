@@ -18,10 +18,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "hibiii.windchimes.Windchimes"
+      "hibiii.windchimes.Initializer"
     ],
     "client": [
-      "hibiii.windchimes.WindchimesClient"
+      "hibiii.windchimes.ClientInitializer"
     ]
   },
 
