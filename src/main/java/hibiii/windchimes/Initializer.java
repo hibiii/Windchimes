@@ -25,7 +25,6 @@ public class Initializer implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		
-		ChimeType.register();
         Registry.register(Registry.BLOCK, IRON_CHIME_ID, IRON_CHIME);
         Registry.register(Registry.ITEM, IRON_CHIME_ID, new BlockItem(IRON_CHIME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
         

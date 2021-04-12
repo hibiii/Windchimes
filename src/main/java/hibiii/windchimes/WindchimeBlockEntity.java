@@ -1,5 +1,7 @@
 package hibiii.windchimes;
 
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -10,17 +12,18 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 	public int ringingTicks;
 	protected int ticksToNextRing;
 	protected int baselineRingTicks;
-	public ChimeType chimeType = null;
+	@Nullable private ChimeType cachedType;
+	private boolean cachedTypeNeedsUpdate;
 	public WindchimeBlockEntity() {
+		this(ChimeType.INVALID);
+	}
+	public WindchimeBlockEntity(ChimeType type) {
 		super(Initializer.CHIME_BLOCK_ENTITY);
 		ringingTicks = 0;
 		ticksToNextRing = 40;
 		baselineRingTicks = 0;
-		
-	}
-	public WindchimeBlockEntity(ChimeType type) {
-		this();
-		this.chimeType = type;
+		this.cachedType = type;
+		cachedTypeNeedsUpdate = true;
 	}
 	public void ring(int isLoud) {
 		world.addSyncedBlockEvent(pos, world.getBlockState(pos).getBlock(), 1, isLoud);
@@ -32,13 +35,13 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 		if(type == 1) {
 			if (data == 0) {
 				ringingTicks = 30;
-				world.playSound(null, pos, this.chimeType.loudSound, SoundCategory.RECORDS,
+				world.playSound(null, pos, this.getChimeType().loudSound, SoundCategory.RECORDS,
 						0.9f + world.random.nextFloat() * 0.2f,
 						0.8f + world.random.nextFloat() * 0.4f);
 			}
 			else {
 				ringingTicks = 140;
-				world.playSound(null, pos, this.chimeType.loudSound, SoundCategory.RECORDS,
+				world.playSound(null, pos, this.getChimeType().loudSound, SoundCategory.RECORDS,
 						0.9f + world.random.nextFloat() * 0.2f,
 						0.8f + world.random.nextFloat() * 0.4f);
 			}
@@ -48,9 +51,6 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
     }
 	@Override
 	public void tick() {
-		if(this.chimeType == null) {
-			this.chimeType = ((WindchimeBlock)this.getCachedState().getBlock()).getChimeType();
-		}
 		if(world.isClient) {
 			if(ringingTicks > baselineRingTicks)
 				ringingTicks--;
@@ -85,5 +85,13 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 					ticksToNextRing += 100 + world.random.nextInt(700); // 5 - 40s
 			}
 		}
+	}
+	
+	public ChimeType getChimeType() {
+		if(cachedTypeNeedsUpdate) {
+			cachedType = ((WindchimeBlock)this.getCachedState().getBlock()).getChimeType();
+			cachedTypeNeedsUpdate = false;
+		}
+		return cachedType;
 	}
 }
