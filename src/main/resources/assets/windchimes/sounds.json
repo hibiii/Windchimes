@@ -1,19 +1,18 @@
- {
- 	"loud_chimes": {
- 		"sounds": [
- 			"windchimes:iron_loud1",
- 			"windchimes:iron_loud2",
+{
+	"chime.iron.loud": {
+		"sounds": [
+			"windchimes:iron_loud1",
+			"windchimes:iron_loud2",
 			"windchimes:iron_loud3"
- 		]
- 	},
- 	"quiet_chimes": {
- 		"sounds": [
- 			"windchimes:iron_quiet1",
- 			"windchimes:iron_quiet2",
+		]
+	},
+	"chime.iron.quiet": {
+		"sounds": [
+			"windchimes:iron_quiet1",
+			"windchimes:iron_quiet2",
 			"windchimes:iron_quiet3",
 			"windchimes:iron_quiet4",
 			"windchimes:iron_quiet5"
- 		]
- 	}
+		]
+	}
 }
-
