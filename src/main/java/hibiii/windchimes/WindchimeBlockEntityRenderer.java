@@ -39,7 +39,8 @@ public class WindchimeBlockEntityRenderer extends BlockEntityRenderer<WindchimeB
 	@Override
 	public void render(WindchimeBlockEntity entity, float tickDelta, MatrixStack matrices,
 			VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		
+		if(entity.chimeType == null)
+			return;
 		if(entity.hasWorld()) {
 			platform.pitch = MathHelper.sin((entity.getWorld().getTime() + tickDelta) * 0.04f) * 0.06f;
 			platform.roll = MathHelper.sin((entity.getWorld().getTime() + tickDelta) * 0.06f) * 0.04f;
@@ -56,7 +57,7 @@ public class WindchimeBlockEntityRenderer extends BlockEntityRenderer<WindchimeB
 			clapper.roll = rods1.roll + rods2.roll;
 			clapper.yaw = rods1.yaw + rods2.yaw;
 		}
-		VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutout(new Identifier("windchimes","textures/chime.png")));
+		VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutout(entity.chimeType.textureId));
 		platform.render(matrices, consumer, light, overlay);
 		rods1.render(matrices, consumer, light, overlay);
 		rods2.render(matrices, consumer, light, overlay);

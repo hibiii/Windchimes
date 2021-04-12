@@ -1,11 +1,16 @@
 package hibiii.windchimes;
 
+import java.util.Map;
 import java.util.Random;
+
+import com.google.common.collect.Maps;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.Material;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -17,12 +22,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-public class WindchimeBlock extends Block implements BlockEntityProvider {
+public class WindchimeBlock extends BlockWithEntity implements BlockEntityProvider {
 
 	private static final VoxelShape SHAPE = Block.createCuboidShape(4.0, 8.0, 4.0, 12.0, 16.0, 12.0);
 
-	public WindchimeBlock(Settings settings) {
+	public final ChimeType chimeType;
+	public WindchimeBlock(ChimeType type, Settings settings) {
 		super(settings);
+		this.chimeType = type;
 	}
 
 	@Override
@@ -59,11 +66,18 @@ public class WindchimeBlock extends Block implements BlockEntityProvider {
 
 	@Override
 	public BlockEntity createBlockEntity(BlockView view) {
-		return new WindchimeBlockEntity();
+		return new WindchimeBlockEntity(this.chimeType);
 	}
 	
 	@Override
 	public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
 		return world.getBlockEntity(pos).onSyncedBlockEvent(type, data);
+	}
+	
+	public ChimeType getChimeType() {
+		if(this.material == Material.METAL) {
+			return ChimeType.IRON;
+		}
+		return null;
 	}
 }

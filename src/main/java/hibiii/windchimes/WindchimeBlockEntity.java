@@ -2,20 +2,28 @@ package hibiii.windchimes;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Tickable;
 
 public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 	public int ringingTicks;
 	protected int ticksToNextRing;
 	protected int baselineRingTicks;
+	public ChimeType chimeType = null;
 	public WindchimeBlockEntity() {
 		super(Initializer.CHIME_BLOCK_ENTITY);
 		ringingTicks = 0;
 		ticksToNextRing = 40;
 		baselineRingTicks = 0;
+		
+	}
+	public WindchimeBlockEntity(ChimeType type) {
+		this();
+		this.chimeType = type;
 	}
 	public void ring(int isLoud) {
-		world.addSyncedBlockEvent(pos, Initializer.CHIME, 1, isLoud);
+		world.addSyncedBlockEvent(pos, world.getBlockState(pos).getBlock(), 1, isLoud);
 	}
 	
 	
@@ -24,13 +32,13 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 		if(type == 1) {
 			if (data == 0) {
 				ringingTicks = 30;
-				world.playSound(null, pos, Initializer.CHIMES_SOUND_QUIET, SoundCategory.RECORDS,
+				world.playSound(null, pos, this.chimeType.loudSound, SoundCategory.RECORDS,
 						0.9f + world.random.nextFloat() * 0.2f,
 						0.8f + world.random.nextFloat() * 0.4f);
 			}
 			else {
 				ringingTicks = 140;
-				world.playSound(null, pos, Initializer.CHIMES_SOUND_LOUD, SoundCategory.RECORDS,
+				world.playSound(null, pos, this.chimeType.loudSound, SoundCategory.RECORDS,
 						0.9f + world.random.nextFloat() * 0.2f,
 						0.8f + world.random.nextFloat() * 0.4f);
 			}
@@ -40,6 +48,9 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
     }
 	@Override
 	public void tick() {
+		if(this.chimeType == null) {
+			this.chimeType = ((WindchimeBlock)this.getCachedState().getBlock()).getChimeType();
+		}
 		if(world.isClient) {
 			if(ringingTicks > baselineRingTicks)
 				ringingTicks--;
@@ -48,14 +59,14 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 			}
 			if(world.isRaining()) {
 				if(world.isThundering())
-					baselineRingTicks = 13;
+					baselineRingTicks = 26;
 				else
-					baselineRingTicks = 6;
+					baselineRingTicks = 12;
 			} else {
 				if(world.isDay())
 					baselineRingTicks = 0;
 				else
-					baselineRingTicks = 3;
+					baselineRingTicks = 6;
 			}
 			return;
 		}
