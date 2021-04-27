@@ -1,33 +1,21 @@
-# Windchimes
-![Windchimes Mod Icon](src/main/resources/assets/windchimes/icon.png)
+<img src="src/main/resources/assets/windchimes/icon.png" height="64px" align="right"> <h1>Windchimes</h1>
 
-Adds an animated wind chime to Minecraft that chimes pseudo-randomly. More chaotic weather, more frequent chimes.
+This is a lightweight mod that adds wind chimes to the game!
 
-## Crafting
+They sway in the wind, and aren't just static blocks, they *are* chimes and they do chime - and even more if it's raining.
 
-```
- /  /  /
- S  S  S   ->  M
- =  *  =
-```
-- `/` = Stick
-- `S` = String
-- `=` = Iron Ingot
-- `*` = Any wooden button
-- `M` = Wind chime
+<!-- placeholder for image -->
 
-## License
+So far, there's only iron pipe chimes and bamboo chimes.
+More are to come, maybe also perhaps a dreamcatcher?
+Here are the crafting recipses:
 
-This mod is licensed under the Unlicense.
+<p align="center">
+<img src=".pretty-readme/iron_chime_recipe.png">
+<img src=".pretty-readme/bamboo_chime_recipe.png">
+</p>
 
-## To do
+This mod is available under the Unlicense license.
+Feel free to learn from it and incorporate it in your own projects.
 
-This list is for 1.0.0.
-
-- [X] Basic concept
-- [X] Animated rods and riging
-- [ ] More obvious class names
-- [ ] Wind chime block class accepting different chimes
-- [X] Iron chime - block & sounds
-- [ ] Bamboo chime - block & sounds
-- [ ] Block place and break sounds
+Made by Hibi
