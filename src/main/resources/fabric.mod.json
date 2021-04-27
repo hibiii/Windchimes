@@ -1,17 +1,19 @@
 {
 	"schemaVersion": 1,
 	"id": "windchimes",
-	"version": "1.0.0-alpha.3",
+	"version": "1.0.0",
 
 	"name": "Windchimes",
 	"description": "Gentle wind chimes that, well, chime on the wind.",
 	"authors": [
 		{
 			"name": "Hibi",
-			"github": "https://github.com/Hibiii",
-			"twitter": "https://twitter.com/uhHibi",
-			"discord": "Hibiii#5726",
-			"homepage": "https://hibi.neocities.org/"
+			"contact": {
+				"github": "https://github.com/Hibiii",
+				"twitter": "https://twitter.com/uhHibi",
+				"discord": "Hibiii#5726",
+				"homepage": "https://hibi.neocities.org/"
+			}
 		}
 	],
 	"contact": {
