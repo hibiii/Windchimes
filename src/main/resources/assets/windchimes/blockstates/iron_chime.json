@@ -1,5 +1,5 @@
 {
 	"variants": {
-		"": { "model": "windchimes:block/chime" }
+		"": { "model": "windchimes:block/iron_chime" }
 	}
 }

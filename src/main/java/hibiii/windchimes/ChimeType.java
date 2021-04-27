@@ -19,6 +19,7 @@ public class ChimeType {
 	}
 
 	public static final ChimeType IRON;
+	public static final ChimeType BAMBOO;
 	public static final ChimeType INVALID;
 	
 	public static FabricBlockSettings settingsWith(Material in) {
@@ -36,6 +37,10 @@ public class ChimeType {
 			new SoundEvent(new Identifier("windchimes:chime.iron.loud")),
 			new SoundEvent(new Identifier("windchimes:chime.iron.quiet")),
 			new Identifier("windchimes:textures/iron_chime.png"));
+		BAMBOO = new ChimeType(
+				new SoundEvent(new Identifier("windchimes:chime.bamboo.loud")),
+				new SoundEvent(new Identifier("windchimes:chime.bamboo.quiet")),
+				new Identifier("windchimes:textures/bamboo_chime.png"));
 		INVALID = new ChimeType(
 			SoundEvents.ENTITY_PIG_AMBIENT,
 			SoundEvents.ENTITY_PIG_HURT,

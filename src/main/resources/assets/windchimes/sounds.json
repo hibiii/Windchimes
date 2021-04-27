@@ -14,5 +14,20 @@
 			"windchimes:iron_quiet4",
 			"windchimes:iron_quiet5"
 		]
+	},
+	"chime.bamboo.loud": {
+		"sounds": [
+			"windchimes:bamboo_loud1",
+			"windchimes:bamboo_loud2",
+			"windchimes:bamboo_loud3"
+		]
+	},
+	"chime.bamboo.quiet": {
+		"sounds": [
+			"windchimes:bamboo_quiet1",
+			"windchimes:bamboo_quiet2",
+			"windchimes:bamboo_quiet3",
+			"windchimes:bamboo_quiet4"
+		]
 	}
 }
