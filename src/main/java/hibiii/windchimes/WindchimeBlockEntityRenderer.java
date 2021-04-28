@@ -40,17 +40,23 @@ public class WindchimeBlockEntityRenderer extends BlockEntityRenderer<WindchimeB
 	public void render(WindchimeBlockEntity entity, float tickDelta, MatrixStack matrices,
 			VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		if(entity.hasWorld()) {
-			platform.pitch = MathHelper.sin((entity.getWorld().getTime() + tickDelta) * 0.04f) * 0.06f;
-			platform.roll = MathHelper.sin((entity.getWorld().getTime() + tickDelta) * 0.06f) * 0.04f;
+			float correctedTicks = (float) ((entity.getWorld().getTime() % 314.15) + tickDelta);
+			platform.pitch = MathHelper.sin(correctedTicks * 0.04f) * 0.06f;
+			platform.roll = MathHelper.sin(correctedTicks * 0.06f) * 0.04f;
+			
 			float sway = entity.ringingTicks + 1f;
 			float strength = (entity.ringingTicks) / 35f;
-			float animationTick = (entity.getWorld().getTime() + tickDelta - sway);
-			rods1.pitch = MathHelper.sin(animationTick * 0.1f) * 0.07f * (strength);
-			rods1.roll = MathHelper.cos(animationTick * 0.07f) * 0.07f * (strength);
-			rods1.yaw = MathHelper.cos(animationTick * 0.03f) * 0.5f * (strength + 1f);
-			rods2.pitch = MathHelper.cos(animationTick * 0.09f) * 0.07f * (strength);
-			rods2.roll = MathHelper.sin(animationTick * 0.1f) * 0.07f * (strength);
-			rods2.yaw = MathHelper.sin(animationTick * 0.03f) * 0.5f * (strength + 1f);
+			
+			float animationTick = (float)((entity.getWorld().getTime() % 628.3) + tickDelta - sway) * 0.1f;
+			float animationTick7 = animationTick * 0.7f;
+			float animationTick3 = animationTick * 0.3f;
+			
+			rods1.pitch = MathHelper.sin(animationTick) * 0.07f * (strength);
+			rods1.roll = MathHelper.cos(animationTick7) * 0.07f * (strength);
+			rods1.yaw = MathHelper.cos(animationTick3) * 0.5f * (strength + 1f);
+			rods2.pitch = MathHelper.cos(animationTick7) * 0.07f * (strength);
+			rods2.roll = MathHelper.sin(animationTick) * 0.07f * (strength);
+			rods2.yaw = MathHelper.sin(animationTick3) * 0.5f * (strength + 1f);
 			clapper.pitch = rods1.pitch + rods2.pitch;
 			clapper.roll = rods1.roll + rods2.roll;
 			clapper.yaw = rods1.yaw + rods2.yaw;
