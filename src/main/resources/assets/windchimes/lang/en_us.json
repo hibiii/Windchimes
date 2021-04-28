@@ -1,4 +1,6 @@
 {
 	"block.windchimes.iron_chime": "Iron Wind Chime",
-	"block.windchimes.bamboo_chime": "Bamboo Wind Chime"
+	"block.windchimes.bamboo_chime": "Bamboo Wind Chime",
+	"subtitles.block.windchimes.iron_chime": "Iron Wind Chime chimes",
+	"subtitles.block.windchimes.bamboo_chime": "Bamboo Wind Chime chimes"
 }
