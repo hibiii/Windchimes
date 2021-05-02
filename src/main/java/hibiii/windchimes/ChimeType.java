@@ -25,7 +25,6 @@ public class ChimeType {
 	public static FabricBlockSettings settingsWith(Material in) {
 		return FabricBlockSettings.of(in)
 			.strength(0)
-			.ticksRandomly()
 			.nonOpaque()
 			.breakInstantly()
 			.resistance(0)

@@ -40,19 +40,6 @@ public class WindchimeBlock extends BlockWithEntity implements BlockEntityProvid
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		BlockEntity i = world.getBlockEntity(pos);
-		if(i instanceof WindchimeBlockEntity) {
-			if(world.getBlockState(pos.down()).isAir()) {
-				((WindchimeBlockEntity)i).ring(1);
-			}
-		} else {
-			i.markRemoved();
-			world.setBlockState(pos, Blocks.AIR.getDefaultState());
-		}
-	}
-
-	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
 		if (world.isAir(pos.up())) {
 			world.getBlockEntity(pos).markRemoved();

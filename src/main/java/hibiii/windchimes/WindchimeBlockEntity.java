@@ -14,6 +14,7 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 	protected int baselineRingTicks;
 	@Nullable private ChimeType cachedType;
 	private boolean cachedTypeNeedsUpdate;
+	private final int tickDisplacement;
 	public WindchimeBlockEntity() {
 		this(ChimeType.INVALID);
 	}
@@ -24,9 +25,11 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 		baselineRingTicks = 0;
 		this.cachedType = type;
 		cachedTypeNeedsUpdate = true;
+		this.tickDisplacement = (this.pos.getX() + this.pos.getY() + this.pos.getZ()) % 6;
 	}
 	public void ring(int isLoud) {
-		world.addSyncedBlockEvent(pos, world.getBlockState(pos).getBlock(), 1, isLoud);
+		if(world.getBlockState(pos.down()).isAir())
+			world.addSyncedBlockEvent(pos, world.getBlockState(pos).getBlock(), 1, isLoud);
 	}
 	
 	
@@ -70,7 +73,8 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 			}
 			return;
 		}
-		if(--ticksToNextRing <= 0) {
+		ticksToNextRing -= 1;
+		if(world.getTime() % 6 == this.tickDisplacement && ticksToNextRing <= 0) {
 			ring(world.random.nextInt(0xff) >> 5);
 			ticksToNextRing = 0;
 			if(world.isRaining()) {
