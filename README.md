@@ -4,7 +4,10 @@ This is a lightweight mod that adds wind chimes to the game!
 
 They sway in the wind, and aren't just static blocks, they *are* chimes and they do chime - and even more if it's raining.
 
-<!-- placeholder for image -->
+<p align="center">
+<img src=".pretty-readme/screenshot_1.png" width="320px">
+<img src=".pretty-readme/screenshot_2.png" width="320px">
+</p>
 
 So far, there's only iron pipe chimes and bamboo chimes.
 More are to come, maybe also perhaps a dreamcatcher?
@@ -17,5 +20,7 @@ Here are the crafting recipses:
 
 This mod is available under the Unlicense license.
 Feel free to learn from it and incorporate it in your own projects.
+
+---
 
 Made by Hibi
