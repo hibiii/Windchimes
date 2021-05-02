@@ -2,7 +2,7 @@
 	"type": "minecraft:crafting_shaped",
 	"pattern": [
 		"###",
-		"SSS",
+		"iSi",
 		"iOi"
 	],
 	"key": {
@@ -21,6 +21,6 @@
 	},
 	"result": {
 		"item": "windchimes:bamboo_chime",
-		"count": 2
+		"count": 1
 	}
 }
