@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "windchimes",
-	"version": "1.1.0",
+	"version": "1.1.1",
 
 	"name": "Windchimes",
 	"description": "This mod adds two wind chimes that sway in the wind and occasionally ring.",

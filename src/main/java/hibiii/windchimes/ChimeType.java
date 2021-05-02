@@ -31,15 +31,28 @@ public class ChimeType {
 			.noCollision();
 	}
 	
+	public static final Identifier IRON_LOUD_SOUND_ID, IRON_QUIET_SOUND_ID, BAMBOO_LOUD_SOUND_ID, BAMBOO_QUIET_SOUND_ID;
+	public static final SoundEvent IRON_LOUD_SOUND, IRON_QUIET_SOUND, BAMBOO_LOUD_SOUND, BAMBOO_QUIET_SOUND;
+	
+	static {
+		IRON_LOUD_SOUND_ID = new Identifier("windchimes:chime.iron.loud");
+		IRON_QUIET_SOUND_ID = new Identifier("windchimes:chime.iron.quiet");
+		BAMBOO_LOUD_SOUND_ID = new Identifier("windchimes:chime.bamboo.loud");
+		BAMBOO_QUIET_SOUND_ID = new Identifier("windchimes:chime.bamboo.quiet");
+		
+		IRON_LOUD_SOUND = new SoundEvent(IRON_LOUD_SOUND_ID);
+		IRON_QUIET_SOUND = new SoundEvent(IRON_QUIET_SOUND_ID);
+		BAMBOO_LOUD_SOUND = new SoundEvent(BAMBOO_LOUD_SOUND_ID);
+		BAMBOO_QUIET_SOUND = new SoundEvent(BAMBOO_QUIET_SOUND_ID);
+	}
+	
 	static {
 		IRON = new ChimeType(
-			new SoundEvent(new Identifier("windchimes:chime.iron.loud")),
-			new SoundEvent(new Identifier("windchimes:chime.iron.quiet")),
+			IRON_LOUD_SOUND, IRON_QUIET_SOUND,
 			new Identifier("windchimes:textures/iron_chime.png"));
 		BAMBOO = new ChimeType(
-				new SoundEvent(new Identifier("windchimes:chime.bamboo.loud")),
-				new SoundEvent(new Identifier("windchimes:chime.bamboo.quiet")),
-				new Identifier("windchimes:textures/bamboo_chime.png"));
+			BAMBOO_LOUD_SOUND, BAMBOO_QUIET_SOUND,
+			new Identifier("windchimes:textures/bamboo_chime.png"));
 		INVALID = new ChimeType(
 			SoundEvents.ENTITY_PIG_AMBIENT,
 			SoundEvents.ENTITY_PIG_HURT,

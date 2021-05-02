@@ -30,9 +30,13 @@ public class Initializer implements ModInitializer {
 		
         Registry.register(Registry.BLOCK, IRON_CHIME_ID, IRON_CHIME);
         Registry.register(Registry.ITEM, IRON_CHIME_ID, new BlockItem(IRON_CHIME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+        Registry.register(Registry.SOUND_EVENT, ChimeType.IRON_LOUD_SOUND_ID, ChimeType.IRON_LOUD_SOUND);
+        Registry.register(Registry.SOUND_EVENT, ChimeType.IRON_QUIET_SOUND_ID, ChimeType.IRON_QUIET_SOUND);
 
         Registry.register(Registry.BLOCK, BAMBOO_CHIME_ID, BAMBOO_CHIME);
         Registry.register(Registry.ITEM, BAMBOO_CHIME_ID, new BlockItem(BAMBOO_CHIME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+        Registry.register(Registry.SOUND_EVENT, ChimeType.BAMBOO_LOUD_SOUND_ID, ChimeType.BAMBOO_LOUD_SOUND);
+        Registry.register(Registry.SOUND_EVENT, ChimeType.BAMBOO_QUIET_SOUND_ID, ChimeType.BAMBOO_QUIET_SOUND);
         
         CHIME_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, CHIME_BLOCK_ENTITY_ID,
         		BlockEntityType.Builder.create(WindchimeBlockEntity::new,
