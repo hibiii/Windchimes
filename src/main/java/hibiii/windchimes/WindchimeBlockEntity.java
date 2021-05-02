@@ -4,8 +4,6 @@ import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Tickable;
 
 public class WindchimeBlockEntity extends BlockEntity implements Tickable {
