@@ -33,9 +33,9 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 		this.tickDisplacement = (this.pos.getX() + this.pos.getY() + this.pos.getZ()) % 6;
 	}
 	
-	public void ring(int isLoud) {
+	public void ring(boolean isLoud) {
 		if(this.world.getBlockState(this.pos.down()).isAir())
-			this.world.addSyncedBlockEvent(this.pos, this.world.getBlockState(this.pos).getBlock(), 1, isLoud);
+			this.world.addSyncedBlockEvent(this.pos, this.world.getBlockState(this.pos).getBlock(), 1, isLoud? 1: 0);
 	}
 	
 	
@@ -89,21 +89,21 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 			if(this.world.isRaining()) {
 				if(this.world.isThundering()) {
 					this.ticksToNextRing = this.world.random.nextInt(200);       // 0 - 10s
-					this.ring(this.world.random.nextInt(4) == 0? 0: 1);          // 75% chance of loudness
+					this.ring(this.world.random.nextInt(4) != 0);          // 75% chance of loudness
 				}
 				else {
 					this.ticksToNextRing = 100 + this.world.random.nextInt(400); // 5 - 25s
-					this.ring(this.world.random.nextInt(3) == 0? 1: 0);          // 33% chance of loudness
+					this.ring(this.world.random.nextInt(3) == 0);          // 33% chance of loudness
 				}
 			}
 			else {
 				if(this.world.isDay()) {
 					this.ticksToNextRing = 200 + this.world.random.nextInt(900); // 10s - 55s
-					this.ring(this.world.random.nextInt(5) == 0? 1: 0);          // 25% chance of loudness
+					this.ring(this.world.random.nextInt(5) == 0);          // 25% chance of loudness
 				}
 				else {
 					this.ticksToNextRing = 100 + this.world.random.nextInt(700); // 5 - 40s
-					this.ring(this.world.random.nextInt(5) == 0? 1: 0);          // 20% chance of loudness
+					this.ring(this.world.random.nextInt(5) == 0);          // 20% chance of loudness
 				}
 			}
 		}

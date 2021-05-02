@@ -7,6 +7,10 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -52,6 +56,14 @@ public class WindchimeBlock extends BlockWithEntity implements BlockEntityProvid
 	@Override
 	public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
 		return world.getBlockEntity(pos).onSyncedBlockEvent(type, data);
+	}
+	
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		WindchimeBlockEntity here = ((WindchimeBlockEntity)world.getBlockEntity(pos));
+		here.ring(!player.isSneaking());
+		here.ticksToNextRing += 4;
+		return ActionResult.success(world.isClient);
 	}
 	
 	public ChimeType getChimeType() {
