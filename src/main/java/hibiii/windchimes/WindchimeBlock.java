@@ -19,12 +19,10 @@ public class WindchimeBlock extends BlockWithEntity implements BlockEntityProvid
 
 	private static final VoxelShape SHAPE = Block.createCuboidShape(4.0, 8.0, 4.0, 12.0, 16.0, 12.0);
 
-	//private static final Map<Block, ChimeType> CHIMES = Maps.newHashMap();
 	private ChimeType chimeType = ChimeType.INVALID;
 	public WindchimeBlock(ChimeType chimeTypeIn, Settings settings) {
 		super(settings);
 		this.chimeType = chimeTypeIn;
-		//CHIMES.put(this, chimeTypeIn);
 	}
 
 	@Override
@@ -58,12 +56,5 @@ public class WindchimeBlock extends BlockWithEntity implements BlockEntityProvid
 	
 	public ChimeType getChimeType() {
 		return this.chimeType;
-	}
-	
-	public static ChimeType getChimeType(Block block) {
-		if(block instanceof WindchimeBlock) {
-			return ((WindchimeBlock)block).getChimeType();
-		}
-		return ChimeType.INVALID;
 	}
 }

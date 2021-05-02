@@ -7,27 +7,34 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Tickable;
 
 public class WindchimeBlockEntity extends BlockEntity implements Tickable {
+	
 	public int ringingTicks;
+	
 	protected int ticksToNextRing;
 	protected int baselineRingTicks;
-	@Nullable private ChimeType cachedType;
-	private boolean cachedTypeNeedsUpdate;
-	private final int tickDisplacement;
+	
+	@Nullable protected ChimeType cachedType;
+	protected boolean cachedTypeNeedsUpdate;
+	
+	protected final int tickDisplacement;
+	
 	public WindchimeBlockEntity() {
 		this(ChimeType.INVALID);
 	}
+	
 	public WindchimeBlockEntity(ChimeType type) {
 		super(Initializer.CHIME_BLOCK_ENTITY);
-		ringingTicks = 0;
-		ticksToNextRing = 40;
-		baselineRingTicks = 0;
+		this.ringingTicks = 0;
+		this.ticksToNextRing = 40;
+		this.baselineRingTicks = 0;
 		this.cachedType = type;
-		cachedTypeNeedsUpdate = true;
+		this.cachedTypeNeedsUpdate = true;
 		this.tickDisplacement = (this.pos.getX() + this.pos.getY() + this.pos.getZ()) % 6;
 	}
+	
 	public void ring(int isLoud) {
-		if(world.getBlockState(pos.down()).isAir())
-			world.addSyncedBlockEvent(pos, world.getBlockState(pos).getBlock(), 1, isLoud);
+		if(this.world.getBlockState(this.pos.down()).isAir())
+			this.world.addSyncedBlockEvent(this.pos, this.world.getBlockState(this.pos).getBlock(), 1, isLoud);
 	}
 	
 	
@@ -35,35 +42,37 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
     public boolean onSyncedBlockEvent(int type, int data) {
 		if(type == 1) {
 			if (data == 0) {
-				ringingTicks = 30;
-				world.playSound(null, pos, this.getChimeType().loudSound, SoundCategory.RECORDS,
-						0.9f + world.random.nextFloat() * 0.2f,
-						0.8f + world.random.nextFloat() * 0.4f);
+				this.ringingTicks = 30;
+				this.world.playSound(null, this.pos, this.getChimeType().loudSound, SoundCategory.RECORDS,
+						0.9f + this.world.random.nextFloat() * 0.2f,
+						0.8f + this.world.random.nextFloat() * 0.4f);
 			}
 			else {
-				ringingTicks = 140;
-				world.playSound(null, pos, this.getChimeType().loudSound, SoundCategory.RECORDS,
-						0.9f + world.random.nextFloat() * 0.2f,
-						0.8f + world.random.nextFloat() * 0.4f);
+				this.ringingTicks = 140;
+				this.world.playSound(null, this.pos, this.getChimeType().loudSound, SoundCategory.RECORDS,
+						0.9f + this.world.random.nextFloat() * 0.2f,
+						0.8f + this.world.random.nextFloat() * 0.4f);
 			}
 			return true;
 		}
         return super.onSyncedBlockEvent(type, data);
     }
+	
 	@Override
 	public void tick() {
-		if(world.isClient) {
-			if(ringingTicks > baselineRingTicks)
-				ringingTicks--;
-			if(ringingTicks < baselineRingTicks) {
-				ringingTicks = baselineRingTicks;
+		if(this.world.isClient) {
+			if(this.ringingTicks > this.baselineRingTicks)
+				this.ringingTicks--;
+			if(this.ringingTicks < this.baselineRingTicks) {
+				this.ringingTicks = this.baselineRingTicks;
 			}
 			if(world.isRaining()) {
 				if(world.isThundering())
 					baselineRingTicks = 26;
 				else
 					baselineRingTicks = 12;
-			} else {
+			}
+			else {
 				if(world.isDay())
 					baselineRingTicks = 0;
 				else
@@ -71,29 +80,31 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 			}
 			return;
 		}
-		ticksToNextRing -= 1;
-		if(world.getTime() % 6 == this.tickDisplacement && ticksToNextRing <= 0) {
-			ring(world.random.nextInt(0xff) >> 5);
-			ticksToNextRing = 0;
-			if(world.isRaining()) {
-				if(world.isThundering())
-					ticksToNextRing += world.random.nextInt(200);       // 0 - 10s
+		
+		this.ticksToNextRing -= 1;
+		if(this.world.getTime() % 6 == this.tickDisplacement && this.ticksToNextRing <= 0) {
+			this.ring(this.world.random.nextInt(0xff) >> 5);
+			this.ticksToNextRing = 0;
+			if(this.world.isRaining()) {
+				if(this.world.isThundering())
+					this.ticksToNextRing += this.world.random.nextInt(200);       // 0 - 10s
 				else
-					ticksToNextRing += 100 + world.random.nextInt(600); // 5 - 35s
-			} else {
-				if(world.isDay())
-					ticksToNextRing += 300 + world.random.nextInt(2100); // 15s - 2mins
+					this.ticksToNextRing += 100 + this.world.random.nextInt(600); // 5 - 35s
+			}
+			else {
+				if(this.world.isDay())
+					this.ticksToNextRing += 300 + this.world.random.nextInt(2100); // 15s - 2mins
 				else
-					ticksToNextRing += 100 + world.random.nextInt(700); // 5 - 40s
+					this.ticksToNextRing += 100 + this.world.random.nextInt(700); // 5 - 40s
 			}
 		}
 	}
 	
 	public ChimeType getChimeType() {
-		if(cachedTypeNeedsUpdate) {
-			cachedType = ((WindchimeBlock)this.getCachedState().getBlock()).getChimeType();
-			cachedTypeNeedsUpdate = false;
+		if(this.cachedTypeNeedsUpdate) {
+			this.cachedType = ((WindchimeBlock)this.getCachedState().getBlock()).getChimeType();
+			this.cachedTypeNeedsUpdate = false;
 		}
-		return cachedType;
+		return this.cachedType;
 	}
 }
