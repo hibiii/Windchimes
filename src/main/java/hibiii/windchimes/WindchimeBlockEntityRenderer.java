@@ -46,7 +46,7 @@ public class WindchimeBlockEntityRenderer extends BlockEntityRenderer<WindchimeB
 			this.platform.roll = MathHelper.sin(correctedTicks * 0.06f) * 0.04f;
 			
 			float sway = entity.ringingTicks + 1f;
-			float strength = (entity.ringingTicks) / 35f;
+			float strength = (entity.ringingTicks) / entity.strengthDivisor;
 			
 			float animationTick = (float)((entity.getWorld().getTime() % 628.3) + tickDelta - sway) * 0.1f;
 			float animationTick7 = animationTick * 0.7f;
