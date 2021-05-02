@@ -43,7 +43,7 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 		if(type == 1) {
 			if (data == 0) {
 				this.ringingTicks = 30;
-				this.world.playSound(null, this.pos, this.getChimeType().loudSound, SoundCategory.RECORDS,
+				this.world.playSound(null, this.pos, this.getChimeType().quietSound, SoundCategory.RECORDS,
 						0.9f + this.world.random.nextFloat() * 0.2f,
 						0.8f + this.world.random.nextFloat() * 0.4f);
 			}
