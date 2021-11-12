@@ -2,6 +2,7 @@ package hibiii.windchimes;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
@@ -20,26 +21,26 @@ public class Initializer implements ModInitializer {
 	public static final WindchimeBlock BAMBOO_CHIME = new WindchimeBlock(
 			ChimeType.BAMBOO, ChimeType.settingsWith(Material.BAMBOO).sounds(BlockSoundGroup.BAMBOO));
 	
+	// TODO: Copper chimes
+	// TODO: Amethyst chimes
+	
 	public static BlockEntityType<WindchimeBlockEntity> CHIME_BLOCK_ENTITY;
 
 	public static final Identifier CHIME_BLOCK_ENTITY_ID = new Identifier("windchimes:chime");
 	
-	
 	@Override
 	public void onInitialize() {
 		
-        Registry.register(Registry.BLOCK, IRON_CHIME_ID, IRON_CHIME);
-        Registry.register(Registry.ITEM, IRON_CHIME_ID, new BlockItem(IRON_CHIME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
-        Registry.register(Registry.SOUND_EVENT, ChimeType.IRON_LOUD_SOUND_ID, ChimeType.IRON_LOUD_SOUND);
-        Registry.register(Registry.SOUND_EVENT, ChimeType.IRON_QUIET_SOUND_ID, ChimeType.IRON_QUIET_SOUND);
+		Registry.register(Registry.BLOCK, IRON_CHIME_ID, IRON_CHIME);
+		Registry.register(Registry.ITEM, IRON_CHIME_ID, new BlockItem(IRON_CHIME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		Registry.register(Registry.SOUND_EVENT, ChimeType.IRON_LOUD_SOUND_ID, ChimeType.IRON_LOUD_SOUND);
+		Registry.register(Registry.SOUND_EVENT, ChimeType.IRON_QUIET_SOUND_ID, ChimeType.IRON_QUIET_SOUND);
 
-        Registry.register(Registry.BLOCK, BAMBOO_CHIME_ID, BAMBOO_CHIME);
-        Registry.register(Registry.ITEM, BAMBOO_CHIME_ID, new BlockItem(BAMBOO_CHIME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
-        Registry.register(Registry.SOUND_EVENT, ChimeType.BAMBOO_LOUD_SOUND_ID, ChimeType.BAMBOO_LOUD_SOUND);
-        Registry.register(Registry.SOUND_EVENT, ChimeType.BAMBOO_QUIET_SOUND_ID, ChimeType.BAMBOO_QUIET_SOUND);
-        
-        CHIME_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, CHIME_BLOCK_ENTITY_ID,
-        		BlockEntityType.Builder.create(WindchimeBlockEntity::new,
-        			IRON_CHIME, BAMBOO_CHIME).build(null));
+		Registry.register(Registry.BLOCK, BAMBOO_CHIME_ID, BAMBOO_CHIME);
+		Registry.register(Registry.ITEM, BAMBOO_CHIME_ID, new BlockItem(BAMBOO_CHIME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		Registry.register(Registry.SOUND_EVENT, ChimeType.BAMBOO_LOUD_SOUND_ID, ChimeType.BAMBOO_LOUD_SOUND);
+		Registry.register(Registry.SOUND_EVENT, ChimeType.BAMBOO_QUIET_SOUND_ID, ChimeType.BAMBOO_QUIET_SOUND);
+		
+		CHIME_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, CHIME_BLOCK_ENTITY_ID, FabricBlockEntityTypeBuilder.create(WindchimeBlockEntity::new, IRON_CHIME, BAMBOO_CHIME).build(null));
 	}
 }

@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "windchimes",
-	"version": "${mod_version}",
+	"version": "${version}",
 
 	"name": "Windchimes",
 	"description": "This mod adds two wind chimes that sway in the wind and occasionally ring.",

@@ -2,11 +2,13 @@ package hibiii.windchimes;
 
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Tickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-public class WindchimeBlockEntity extends BlockEntity implements Tickable {
+public class WindchimeBlockEntity extends BlockEntity {
 	
 	public int ringingTicks;
 	public float strengthDivisor = 35f;
@@ -18,17 +20,13 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
 	protected boolean cachedTypeNeedsUpdate;
 	
 	protected final int tickDisplacement;
-	
-	public WindchimeBlockEntity() {
-		this(ChimeType.INVALID);
-	}
-	
-	public WindchimeBlockEntity(ChimeType type) {
-		super(Initializer.CHIME_BLOCK_ENTITY);
+
+	public WindchimeBlockEntity(BlockPos pos, BlockState state) {
+		super(Initializer.CHIME_BLOCK_ENTITY, pos, state);
 		this.ringingTicks = 0;
 		this.ticksToNextRing = 40;
 		this.baselineRingTicks = 0;
-		this.cachedType = type;
+		this.cachedType = ((WindchimeBlock)state.getBlock()).getChimeType();
 		this.cachedTypeNeedsUpdate = true;
 		this.tickDisplacement = (this.pos.getX() + this.pos.getY() + this.pos.getZ()) % 6;
 	}
@@ -61,49 +59,48 @@ public class WindchimeBlockEntity extends BlockEntity implements Tickable {
         return super.onSyncedBlockEvent(type, data);
     }
 	
-	@Override
-	public void tick() {
-		if(this.world.isClient) {
-			if(this.ringingTicks > this.baselineRingTicks)
-				this.ringingTicks--;
-			if(this.ringingTicks < this.baselineRingTicks) {
-				this.ringingTicks = this.baselineRingTicks;
+	public static void tick(World world, BlockPos pos, BlockState state, WindchimeBlockEntity that) {
+		if(world.isClient) {
+			if(that.ringingTicks > that.baselineRingTicks)
+				that.ringingTicks--;
+			if(that.ringingTicks < that.baselineRingTicks) {
+				that.ringingTicks = that.baselineRingTicks;
 			}
 			if(world.isRaining()) {
 				if(world.isThundering())
-					baselineRingTicks = 26;
+					that.baselineRingTicks = 26;
 				else
-					baselineRingTicks = 12;
+					that.baselineRingTicks = 12;
 			}
 			else {
 				if(world.isDay())
-					baselineRingTicks = 0;
+					that.baselineRingTicks = 0;
 				else
-					baselineRingTicks = 6;
+					that.baselineRingTicks = 6;
 			}
 			return;
 		}
 		
-		this.ticksToNextRing -= 1;
-		if(this.ticksToNextRing <= 0 && this.world.getTime() % 6 == this.tickDisplacement) {
-			if(this.world.isRaining()) {
-				if(this.world.isThundering()) {
-					this.ticksToNextRing = this.world.random.nextInt(200);       // 0 - 10s
-					this.ring(this.world.random.nextInt(4) != 0);          // 75% chance of loudness
+		that.ticksToNextRing -= 1;
+		if(that.ticksToNextRing <= 0 && world.getTime() % 6 == that.tickDisplacement) {
+			if(world.isRaining()) {
+				if(world.isThundering()) {
+					that.ticksToNextRing = world.random.nextInt(200);       // 0 - 10s
+					that.ring(world.random.nextInt(4) != 0);          // 75% chance of loudness
 				}
 				else {
-					this.ticksToNextRing = 100 + this.world.random.nextInt(400); // 5 - 25s
-					this.ring(this.world.random.nextInt(3) == 0);          // 33% chance of loudness
+					that.ticksToNextRing = 100 + world.random.nextInt(400); // 5 - 25s
+					that.ring(world.random.nextInt(3) == 0);          // 33% chance of loudness
 				}
 			}
 			else {
-				if(this.world.isDay()) {
-					this.ticksToNextRing = 200 + this.world.random.nextInt(900); // 10s - 55s
-					this.ring(this.world.random.nextInt(5) == 0);          // 25% chance of loudness
+				if(world.isDay()) {
+					that.ticksToNextRing = 200 + world.random.nextInt(900); // 10s - 55s
+					that.ring(world.random.nextInt(5) == 0);          // 25% chance of loudness
 				}
 				else {
-					this.ticksToNextRing = 100 + this.world.random.nextInt(700); // 5 - 40s
-					this.ring(this.world.random.nextInt(5) == 0);          // 20% chance of loudness
+					that.ticksToNextRing = 100 + world.random.nextInt(700); // 5 - 40s
+					that.ring(world.random.nextInt(5) == 0);          // 20% chance of loudness
 				}
 			}
 		}

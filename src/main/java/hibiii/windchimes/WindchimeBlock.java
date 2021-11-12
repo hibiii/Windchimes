@@ -1,12 +1,13 @@
 package hibiii.windchimes;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -19,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-public class WindchimeBlock extends BlockWithEntity implements BlockEntityProvider {
+public class WindchimeBlock extends BlockWithEntity {
 
 	private static final VoxelShape SHAPE = Block.createCuboidShape(4.0, 8.0, 4.0, 12.0, 16.0, 12.0);
 
@@ -49,8 +50,13 @@ public class WindchimeBlock extends BlockWithEntity implements BlockEntityProvid
 	}
 
 	@Override
-	public BlockEntity createBlockEntity(BlockView view) {
-		return new WindchimeBlockEntity(this.chimeType);
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new WindchimeBlockEntity(pos, state);
+	}
+
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> givenType) {
+		return world.isClient? null : WindchimeBlock.checkType(givenType, Initializer.CHIME_BLOCK_ENTITY, WindchimeBlockEntity::tick);
 	}
 	
 	@Override

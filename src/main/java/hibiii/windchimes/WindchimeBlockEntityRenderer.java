@@ -4,38 +4,39 @@ import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 
-public class WindchimeBlockEntityRenderer extends BlockEntityRenderer<WindchimeBlockEntity> {
+public class WindchimeBlockEntityRenderer implements BlockEntityRenderer<WindchimeBlockEntity> {
 	
 	private ModelPart platform;
 	private ModelPart rods1;
 	private ModelPart rods2;
 	private ModelPart clapper;
 	
-	public WindchimeBlockEntityRenderer(BlockEntityRenderDispatcher dispatcher) {
-		super(dispatcher);
-		this.platform = new ModelPart(32, 32, 0, 0);
-		this.platform.setPivot(8f, 16f, 8f);
-		this.platform.setTextureOffset(18, 3).addCuboid(-0.5F, -1.0F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);   // Hanger
-		this.platform.setTextureOffset(0, 0).addCuboid(-3.0F, -2.0F, -3.0F, 6.0F, 1.0F, 6.0F, 0.0F, false);  // Support
+	public WindchimeBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+		// FIXME: Oldschool renderer
+		super();
+		// this.platform = new ModelPart(32, 32, 0, 0);
+		// this.platform.setPivot(8f, 16f, 8f);
+		// this.platform.setTextureOffset(18, 3).addCuboid(-0.5F, -1.0F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);   // Hanger
+		// this.platform.setTextureOffset(0, 0).addCuboid(-3.0F, -2.0F, -3.0F, 6.0F, 1.0F, 6.0F, 0.0F, false);  // Support
 		
-		this.rods1 = new ModelPart(32, 32, 0, 0);
-		this.rods1.setPivot(8f, 14f, 8f);
-		this.rods1.setTextureOffset(0, 7).addCuboid(-2.0F, -21.0F, -2.0F, 1.0F, 15.0F, 1.0F, 0.0F, false); // Rod NW
-		this.rods1.setTextureOffset(12, 7).addCuboid(1.0F, -15.0F, 1.0F, 1.0F, 9.0F, 1.0F, 0.0F, false); // Rod SE
+		// this.rods1 = new ModelPart(32, 32, 0, 0);
+		// this.rods1.setPivot(8f, 14f, 8f);
+		// this.rods1.setTextureOffset(0, 7).addCuboid(-2.0F, -21.0F, -2.0F, 1.0F, 15.0F, 1.0F, 0.0F, false); // Rod NW
+		// this.rods1.setTextureOffset(12, 7).addCuboid(1.0F, -15.0F, 1.0F, 1.0F, 9.0F, 1.0F, 0.0F, false); // Rod SE
 		
-		this.rods2 = new ModelPart(32, 32, 0, 0);
-		this.rods2.setPivot(8f, 14f, 8f);
-		this.rods2.setTextureOffset(8, 7).addCuboid(1.0F, -17.0F, -2.0F, 1.0F, 11.0F, 1.0F, 0.0F, false); // Rod NE
-		this.rods2.setTextureOffset(4, 7).addCuboid(-2.0F, -19.0F, 1.0F, 1.0F, 13.0F, 1.0F, 0.0F, false); // Rod SW
+		// this.rods2 = new ModelPart(32, 32, 0, 0);
+		// this.rods2.setPivot(8f, 14f, 8f);
+		// this.rods2.setTextureOffset(8, 7).addCuboid(1.0F, -17.0F, -2.0F, 1.0F, 11.0F, 1.0F, 0.0F, false); // Rod NE
+		// this.rods2.setTextureOffset(4, 7).addCuboid(-2.0F, -19.0F, 1.0F, 1.0F, 13.0F, 1.0F, 0.0F, false); // Rod SW
 		
-		this.clapper = new ModelPart(32, 32, 0, 0);
-		this.clapper.setPivot(8f, 14f, 8f);
-		this.clapper.setTextureOffset(18, 0).addCuboid(-1.0F, -13.0F, -1.0F, 2.0F, 1.0F, 2.0F, 0.0F, false);  // Clapper
+		// this.clapper = new ModelPart(32, 32, 0, 0);
+		// this.clapper.setPivot(8f, 14f, 8f);
+		// this.clapper.setTextureOffset(18, 0).addCuboid(-1.0F, -13.0F, -1.0F, 2.0F, 1.0F, 2.0F, 0.0F, false);  // Clapper
 	}
 
 	@Override
