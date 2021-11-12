@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "windchimes",
-	"version": "1.1.1",
+	"version": "${mod_version}",
 
 	"name": "Windchimes",
 	"description": "This mod adds two wind chimes that sway in the wind and occasionally ring.",
@@ -11,7 +11,7 @@
 			"contact": {
 				"github": "https://github.com/Hibiii",
 				"twitter": "https://twitter.com/uhHibi",
-				"discord": "Hibiii#5726",
+				"discord": "hibi#0025",
 				"homepage": "https://hibi.neocities.org/"
 			}
 		}
@@ -37,6 +37,6 @@
 	"depends": {
 		"fabricloader": ">=0.7.4",
 		"fabric": "*",
-		"minecraft": ">=1.16"
+		"minecraft": ">=1.17.1"
 	}
 }
