@@ -1,6 +1,11 @@
 package hibiii.windchimes;
 
+import net.minecraft.client.model.ModelData;
 import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.ModelPartBuilder;
+import net.minecraft.client.model.ModelPartData;
+import net.minecraft.client.model.ModelTransform;
+import net.minecraft.client.model.TexturedModelData;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -11,32 +16,40 @@ import net.minecraft.util.math.MathHelper;
 
 public class WindchimeBlockEntityRenderer implements BlockEntityRenderer<WindchimeBlockEntity> {
 	
-	private ModelPart platform;
-	private ModelPart rods1;
-	private ModelPart rods2;
-	private ModelPart clapper;
+	private final ModelPart platform;
+	private final ModelPart rods1;
+	private final ModelPart rods2;
+	private final ModelPart clapper;
 	
 	public WindchimeBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-		// FIXME: Oldschool renderer
-		super();
-		// this.platform = new ModelPart(32, 32, 0, 0);
-		// this.platform.setPivot(8f, 16f, 8f);
-		// this.platform.setTextureOffset(18, 3).addCuboid(-0.5F, -1.0F, -0.5F, 1.0F, 1.0F, 1.0F, 0.0F, false);   // Hanger
-		// this.platform.setTextureOffset(0, 0).addCuboid(-3.0F, -2.0F, -3.0F, 6.0F, 1.0F, 6.0F, 0.0F, false);  // Support
-		
-		// this.rods1 = new ModelPart(32, 32, 0, 0);
-		// this.rods1.setPivot(8f, 14f, 8f);
-		// this.rods1.setTextureOffset(0, 7).addCuboid(-2.0F, -21.0F, -2.0F, 1.0F, 15.0F, 1.0F, 0.0F, false); // Rod NW
-		// this.rods1.setTextureOffset(12, 7).addCuboid(1.0F, -15.0F, 1.0F, 1.0F, 9.0F, 1.0F, 0.0F, false); // Rod SE
-		
-		// this.rods2 = new ModelPart(32, 32, 0, 0);
-		// this.rods2.setPivot(8f, 14f, 8f);
-		// this.rods2.setTextureOffset(8, 7).addCuboid(1.0F, -17.0F, -2.0F, 1.0F, 11.0F, 1.0F, 0.0F, false); // Rod NE
-		// this.rods2.setTextureOffset(4, 7).addCuboid(-2.0F, -19.0F, 1.0F, 1.0F, 13.0F, 1.0F, 0.0F, false); // Rod SW
-		
-		// this.clapper = new ModelPart(32, 32, 0, 0);
-		// this.clapper.setPivot(8f, 14f, 8f);
-		// this.clapper.setTextureOffset(18, 0).addCuboid(-1.0F, -13.0F, -1.0F, 2.0F, 1.0F, 2.0F, 0.0F, false);  // Clapper
+		ModelData platformData = new ModelData();
+		ModelPartData platformPartData = platformData.getRoot();
+		platformPartData.addChild("hanger", ModelPartBuilder.create().uv(18, 3).cuboid(-0.5f, -1f, -0.5f, 1f, 1f, 1f), ModelTransform.NONE);
+		platformPartData.addChild("platform", ModelPartBuilder.create().uv(0, 0).cuboid( -3f, -2f,   -3f, 6f, 1f, 6f), ModelTransform.NONE);
+		this.platform = platformPartData.createPart(32, 32);
+		this.platform.setPivot(8f, 16f, 8f);
+
+		// Rods NW and SE
+		ModelData rods1Data = new ModelData();
+		ModelPartData rods1PartData = rods1Data.getRoot();
+		rods1PartData.addChild("rod1", ModelPartBuilder.create().uv(0, 7).cuboid(-2f, -21f, -2f, 1f, 15f, 1f), ModelTransform.NONE);
+		rods1PartData.addChild("rod2", ModelPartBuilder.create().uv(12,7).cuboid(1f, -15f, 1f, 1f, 9f, 1f), ModelTransform.NONE);
+		this.rods1 = rods1PartData.createPart(32, 32);
+		this.rods1.setPivot(8f, 14f, 8f);
+
+		// Rods NE and SW
+		ModelData rods2Data = new ModelData();
+		ModelPartData rods2PartData = rods2Data.getRoot();
+		rods2PartData.addChild("rod3", ModelPartBuilder.create().uv(8, 7).cuboid(1f, -17f, -2f, 1f, 11f, 1f), ModelTransform.NONE);
+		rods2PartData.addChild("rod4", ModelPartBuilder.create().uv(4, 7).cuboid(-2f, -19f, 1f, 1f, 13f, 1f), ModelTransform.NONE);
+		this.rods2 = rods2PartData.createPart(32, 32);
+		this.rods2.setPivot(8f, 14f, 8f);
+
+		ModelData clapperData = new ModelData();
+		ModelPartData clapperPartData = clapperData.getRoot();
+		clapperPartData.addChild(null, ModelPartBuilder.create().uv(18, 0).cuboid(-1f, -13f, -1f, 2f, 1f, 2f), ModelTransform.NONE);
+		this.clapper = clapperPartData.createPart(32, 32);
+		this.clapper.setPivot(8f, 14f, 8f);
 	}
 
 	@Override
@@ -68,5 +81,9 @@ public class WindchimeBlockEntityRenderer implements BlockEntityRenderer<Windchi
 		this.rods1.render(matrices, consumer, light, overlay);
 		this.rods2.render(matrices, consumer, light, overlay);
 		this.clapper.render(matrices, consumer, light, overlay);
+	}
+
+	public static TexturedModelData getTexturedModelData() {
+		return null;
 	}
 }

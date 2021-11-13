@@ -56,7 +56,7 @@ public class WindchimeBlock extends BlockWithEntity {
 
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> givenType) {
-		return world.isClient? null : WindchimeBlock.checkType(givenType, Initializer.CHIME_BLOCK_ENTITY, WindchimeBlockEntity::tick);
+		return WindchimeBlock.checkType(givenType, Initializer.CHIME_BLOCK_ENTITY, WindchimeBlockEntity::tick);
 	}
 	
 	@Override
