@@ -28,7 +28,7 @@ public class WindchimeBlockEntity extends BlockEntity {
 		this.baselineRingTicks = 0;
 		this.cachedType = ((WindchimeBlock)state.getBlock()).getChimeType();
 		this.cachedTypeNeedsUpdate = true;
-		this.tickDisplacement = (this.pos.getX() + this.pos.getY() + this.pos.getZ()) % 6;
+		this.tickDisplacement = Math.abs(this.pos.getX() + this.pos.getY() + this.pos.getZ()) % 6;
 	}
 	
 	public void ring(boolean isLoud) {

@@ -4,19 +4,12 @@
 	"version": "${version}",
 
 	"name": "Windchimes",
-	"description": "This mod adds two wind chimes that sway in the wind and occasionally ring.",
+	"description": "This mod adds three wind chimes that sway in the wind and occasionally ring. Designed to compliment the vanilla game, this mod has no settings that can be set.",
 	"authors": [
-		{
-			"name": "Hibi",
-			"contact": {
-				"github": "https://github.com/Hibiii",
-				"twitter": "https://twitter.com/uhHibi",
-				"discord": "hibi#0025",
-				"homepage": "https://hibi.neocities.org/"
-			}
-		}
+		"Hibi"
 	],
 	"contact": {
+		"homepage": "https://hibiii.github.io/mods/windchimes",
 		"sources": "https://github.com/Hibiii/Windchimes",
 		"issues": "https://github.com/Hibiii/Windchimes/issues"
 	},
@@ -33,10 +26,17 @@
 			"hibiii.windchimes.ClientInitializer"
 		]
 	},
-
 	"depends": {
 		"fabricloader": ">=0.10.0",
 		"fabric": "*",
 		"minecraft": ">=1.17.1"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.github_releases": "https://github.com/Hibiii/Windchimes/releases/",
+				"modmenu.discord": "https://discord.gg/Zef3c27dN2"
+			}
+		}
 	}
 }
