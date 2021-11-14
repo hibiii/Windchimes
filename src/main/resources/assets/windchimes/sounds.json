@@ -1,6 +1,6 @@
 {
 	"chime.iron.loud": {
-		"subtitle": "subtitles.block.windchimes.iron_chime",
+		"subtitle": "subtitles.block.windchimes.chime",
 		"sounds": [
 			"windchimes:iron_loud1",
 			"windchimes:iron_loud2",
@@ -8,7 +8,7 @@
 		]
 	},
 	"chime.iron.quiet": {
-		"subtitle": "subtitles.block.windchimes.iron_chime",
+		"subtitle": "subtitles.block.windchimes.chime",
 		"sounds": [
 			"windchimes:iron_quiet1",
 			"windchimes:iron_quiet2",
@@ -18,7 +18,7 @@
 		]
 	},
 	"chime.bamboo.loud": {
-		"subtitle": "subtitles.block.windchimes.bamboo_chime",
+		"subtitle": "subtitles.block.windchimes.chime",
 		"sounds": [
 			"windchimes:bamboo_loud1",
 			"windchimes:bamboo_loud2",
@@ -26,12 +26,31 @@
 		]
 	},
 	"chime.bamboo.quiet": {
-		"subtitle": "subtitles.block.windchimes.bamboo_chime",
+		"subtitle": "subtitles.block.windchimes.chime",
 		"sounds": [
 			"windchimes:bamboo_quiet1",
 			"windchimes:bamboo_quiet2",
 			"windchimes:bamboo_quiet3",
 			"windchimes:bamboo_quiet4"
+		]
+	},
+	"chime.copper.loud": {
+		"subtitle": "subtitles.block.windchimes.chime",
+		"sounds": [
+			"windchimes:copper_loud1",
+			"windchimes:copper_loud2",
+			"windchimes:copper_loud3",
+			"windchimes:copper_loud4"
+		]
+	},
+	"chime.copper.quiet": {
+		"subtitle": "subtitles.block.windchimes.chime",
+		"sounds": [
+			"windchimes:copper_quiet1",
+			"windchimes:copper_quiet2",
+			"windchimes:copper_quiet3",
+			"windchimes:copper_quiet4",
+			"windchimes:copper_quiet5"
 		]
 	}
 }
