@@ -9,7 +9,7 @@
 		"Hibi"
 	],
 	"contact": {
-		"homepage": "https://hibiii.github.io/mods/windchimes",
+		"homepage": "https://hibiscus.pet/mods/windchimes",
 		"sources": "https://github.com/Hibiii/Windchimes",
 		"issues": "https://github.com/Hibiii/Windchimes/issues"
 	},
@@ -34,6 +34,8 @@
 		"modmenu": {
 			"links": {
 				"modmenu.github_releases": "https://github.com/Hibiii/Windchimes/releases/",
+				"modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/windchimes",
+				"modmenu.modrinth": "https://modrinth.com/mod/windchimes",
 				"modmenu.discord": "https://discord.gg/Zef3c27dN2"
 			}
 		}
