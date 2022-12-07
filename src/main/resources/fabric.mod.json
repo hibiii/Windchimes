@@ -28,15 +28,14 @@
 	},
 	"depends": {
 		"fabric": "*",
-		"minecraft": ">=1.19"
+		"minecraft": ">=1.19.3-rc.3"
 	},
 	"custom": {
 		"modmenu": {
 			"links": {
 				"modmenu.github_releases": "https://github.com/Hibiii/Windchimes/releases/",
 				"modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/windchimes",
-				"modmenu.modrinth": "https://modrinth.com/mod/windchimes",
-				"modmenu.discord": "https://discord.gg/Zef3c27dN2"
+				"modmenu.modrinth": "https://modrinth.com/mod/windchimes"
 			}
 		}
 	}

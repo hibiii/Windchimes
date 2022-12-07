@@ -2,14 +2,17 @@ package hibiii.windchimes;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public class Initializer implements ModInitializer {
 
@@ -32,21 +35,31 @@ public class Initializer implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		
-		Registry.register(Registry.BLOCK, IRON_CHIME_ID, IRON_CHIME);
-		Registry.register(Registry.ITEM, IRON_CHIME_ID, new BlockItem(IRON_CHIME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
-		Registry.register(Registry.SOUND_EVENT, ChimeType.IRON_LOUD_SOUND_ID, ChimeType.IRON_LOUD_SOUND);
-		Registry.register(Registry.SOUND_EVENT, ChimeType.IRON_QUIET_SOUND_ID, ChimeType.IRON_QUIET_SOUND);
+		Registry.register(Registries.BLOCK, IRON_CHIME_ID, IRON_CHIME);
+		Item ironChime = new BlockItem(IRON_CHIME, new FabricItemSettings());
+		Registry.register(Registries.ITEM, IRON_CHIME_ID, ironChime);
+		Registry.register(Registries.SOUND_EVENT, ChimeType.IRON_LOUD_SOUND_ID, ChimeType.IRON_LOUD_SOUND);
+		Registry.register(Registries.SOUND_EVENT, ChimeType.IRON_QUIET_SOUND_ID, ChimeType.IRON_QUIET_SOUND);
 
-		Registry.register(Registry.BLOCK, BAMBOO_CHIME_ID, BAMBOO_CHIME);
-		Registry.register(Registry.ITEM, BAMBOO_CHIME_ID, new BlockItem(BAMBOO_CHIME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
-		Registry.register(Registry.SOUND_EVENT, ChimeType.BAMBOO_LOUD_SOUND_ID, ChimeType.BAMBOO_LOUD_SOUND);
-		Registry.register(Registry.SOUND_EVENT, ChimeType.BAMBOO_QUIET_SOUND_ID, ChimeType.BAMBOO_QUIET_SOUND);
+		Registry.register(Registries.BLOCK, BAMBOO_CHIME_ID, BAMBOO_CHIME);
+		Item bambooChime = new BlockItem(BAMBOO_CHIME, new FabricItemSettings());
+		Registry.register(Registries.ITEM, BAMBOO_CHIME_ID, bambooChime);
+		Registry.register(Registries.SOUND_EVENT, ChimeType.BAMBOO_LOUD_SOUND_ID, ChimeType.BAMBOO_LOUD_SOUND);
+		Registry.register(Registries.SOUND_EVENT, ChimeType.BAMBOO_QUIET_SOUND_ID, ChimeType.BAMBOO_QUIET_SOUND);
 
-		Registry.register(Registry.BLOCK, COPPER_CHIME_ID, COPPER_CHIME);
-		Registry.register(Registry.ITEM, COPPER_CHIME_ID, new BlockItem(COPPER_CHIME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
-		Registry.register(Registry.SOUND_EVENT, ChimeType.COPPER_LOUD_SOUND_ID, ChimeType.COPPER_LOUD_SOUND);
-		Registry.register(Registry.SOUND_EVENT, ChimeType.COPPER_QUIET_SOUND_ID, ChimeType.COPPER_QUIET_SOUND);
+		Registry.register(Registries.BLOCK, COPPER_CHIME_ID, COPPER_CHIME);
+		Item copperChime = new BlockItem(COPPER_CHIME, new FabricItemSettings());
+		Registry.register(Registries.ITEM, COPPER_CHIME_ID, copperChime);
+		Registry.register(Registries.SOUND_EVENT, ChimeType.COPPER_LOUD_SOUND_ID, ChimeType.COPPER_LOUD_SOUND);
+		Registry.register(Registries.SOUND_EVENT, ChimeType.COPPER_QUIET_SOUND_ID, ChimeType.COPPER_QUIET_SOUND);
 		
-		CHIME_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, CHIME_BLOCK_ENTITY_ID, FabricBlockEntityTypeBuilder.create(WindchimeBlockEntity::new, IRON_CHIME, BAMBOO_CHIME, COPPER_CHIME).build(null));
+
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register((content) -> {
+			content.add(ironChime.getDefaultStack());
+			content.add(bambooChime.getDefaultStack());
+			content.add(copperChime.getDefaultStack());
+		});
+
+		CHIME_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE, CHIME_BLOCK_ENTITY_ID, FabricBlockEntityTypeBuilder.create(WindchimeBlockEntity::new, IRON_CHIME, BAMBOO_CHIME, COPPER_CHIME).build(null));
 	}
 }

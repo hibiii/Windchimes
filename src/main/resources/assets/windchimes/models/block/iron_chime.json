@@ -1,5 +1,5 @@
 {
 	"textures": {
-		"particle": "windchimes:iron_chime_item"
+		"particle": "windchimes:item/iron_chime"
 	}
 }

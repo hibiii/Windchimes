@@ -43,12 +43,12 @@ public class ChimeType {
 		COPPER_LOUD_SOUND_ID = new Identifier("windchimes:chime.copper.loud");
 		COPPER_QUIET_SOUND_ID = new Identifier("windchimes:chime.copper.quiet");
 		
-		IRON_LOUD_SOUND = new SoundEvent(IRON_LOUD_SOUND_ID);
-		IRON_QUIET_SOUND = new SoundEvent(IRON_QUIET_SOUND_ID);
-		BAMBOO_LOUD_SOUND = new SoundEvent(BAMBOO_LOUD_SOUND_ID);
-		BAMBOO_QUIET_SOUND = new SoundEvent(BAMBOO_QUIET_SOUND_ID);
-		COPPER_LOUD_SOUND = new SoundEvent(COPPER_LOUD_SOUND_ID);
-		COPPER_QUIET_SOUND = new SoundEvent(COPPER_QUIET_SOUND_ID);
+		IRON_LOUD_SOUND = SoundEvent.of(IRON_LOUD_SOUND_ID);
+		IRON_QUIET_SOUND = SoundEvent.of(IRON_QUIET_SOUND_ID);
+		BAMBOO_LOUD_SOUND = SoundEvent.of(BAMBOO_LOUD_SOUND_ID);
+		BAMBOO_QUIET_SOUND = SoundEvent.of(BAMBOO_QUIET_SOUND_ID);
+		COPPER_LOUD_SOUND = SoundEvent.of(COPPER_LOUD_SOUND_ID);
+		COPPER_QUIET_SOUND = SoundEvent.of(COPPER_QUIET_SOUND_ID);
 
 
 		IRON = new ChimeType(
