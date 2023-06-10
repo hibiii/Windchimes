@@ -20,15 +20,15 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"hibiii.windchimes.Initializer"
+			"hibiii.windchimes.Initializer::onInitialize"
 		],
 		"client": [
-			"hibiii.windchimes.ClientInitializer"
+			"hibiii.windchimes.ClientInitializer::onInitializeClient"
 		]
 	},
 	"depends": {
 		"fabric": "*",
-		"minecraft": ">=1.19.3-rc.3"
+		"minecraft": ">=1.20"
 	},
 	"custom": {
 		"modmenu": {

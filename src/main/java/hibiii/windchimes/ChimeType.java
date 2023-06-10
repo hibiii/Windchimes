@@ -1,7 +1,6 @@
 package hibiii.windchimes;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Material;
+import net.minecraft.block.AbstractBlock.Settings;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
@@ -23,8 +22,8 @@ public class ChimeType {
 	public static final ChimeType COPPER;
 	public static final ChimeType INVALID;
 	
-	public static FabricBlockSettings settingsWith(Material in) {
-		return FabricBlockSettings.of(in)
+	public static Settings defaultSettings() {
+		return Settings.create()
 			.strength(0)
 			.nonOpaque()
 			.breakInstantly()
@@ -43,12 +42,12 @@ public class ChimeType {
 		COPPER_LOUD_SOUND_ID = new Identifier("windchimes:chime.copper.loud");
 		COPPER_QUIET_SOUND_ID = new Identifier("windchimes:chime.copper.quiet");
 		
-		IRON_LOUD_SOUND = SoundEvent.of(IRON_LOUD_SOUND_ID);
-		IRON_QUIET_SOUND = SoundEvent.of(IRON_QUIET_SOUND_ID);
-		BAMBOO_LOUD_SOUND = SoundEvent.of(BAMBOO_LOUD_SOUND_ID);
-		BAMBOO_QUIET_SOUND = SoundEvent.of(BAMBOO_QUIET_SOUND_ID);
-		COPPER_LOUD_SOUND = SoundEvent.of(COPPER_LOUD_SOUND_ID);
-		COPPER_QUIET_SOUND = SoundEvent.of(COPPER_QUIET_SOUND_ID);
+		IRON_LOUD_SOUND = SoundEvent.createFixedRangeEvent(IRON_LOUD_SOUND_ID, 48);
+		IRON_QUIET_SOUND = SoundEvent.createFixedRangeEvent(IRON_QUIET_SOUND_ID, 24);
+		BAMBOO_LOUD_SOUND = SoundEvent.createFixedRangeEvent(BAMBOO_LOUD_SOUND_ID, 48);
+		BAMBOO_QUIET_SOUND = SoundEvent.createFixedRangeEvent(BAMBOO_QUIET_SOUND_ID, 24);
+		COPPER_LOUD_SOUND = SoundEvent.createFixedRangeEvent(COPPER_LOUD_SOUND_ID, 48);
+		COPPER_QUIET_SOUND = SoundEvent.createFixedRangeEvent(COPPER_QUIET_SOUND_ID, 24);
 
 
 		IRON = new ChimeType(
