@@ -24,5 +24,4 @@ Feel free to learn from it and incorporate it in your own projects.
 
 ---
 
-Made by Hibi\
-Discord: https://discord.gg/Zef3c27dN2
+Made by Hibi
