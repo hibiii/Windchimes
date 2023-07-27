@@ -1,8 +1,8 @@
 {
-	"block.windchimes.iron_chime": "Залізні Вітряні Дзвіночки",
-	"block.windchimes.bamboo_chime": "Бамбукові Вітряні Дзвіночки",
-	"block.windchimes.copper_chime": "Мідні Вітряні Дзвіночки",
-	"subtitles.block.windchimes.chime": "Вітряні Дзвіночки дзвенять",
-	"modmenu.descriptionTranslation.windchimes": "Цей мод додає три вітряних дзвіночків, які гойдаються на вітрі і іноді дзвенять. Зроблено, щоб доповнити ванільну гру. У цього мода немає налаштувань, які можна змінити.",
+	"block.windchimes.iron_chime": "Залізні вітряні дзвіночки",
+	"block.windchimes.bamboo_chime": "Бамбукові вітряні дзвіночки",
+	"block.windchimes.copper_chime": "Мідні вітряні дзвіночки",
+	"subtitles.block.windchimes.chime": "Вітряні дзвіночки дзвенять",
+	"modmenu.descriptionTranslation.windchimes": "Цей мод додає три вітряних дзвіночків, що гойдаються на вітрі й іноді дзвенять. Розроблений як доповнення до стандартної гри, цей мод не має жодних налаштувань, які можна було б встановити.",
 	"modmenu.summaryTranslation.windchimes": "Дзвіночки гойдаються на вітрі..."
 }
