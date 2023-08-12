@@ -1,0 +1,8 @@
+{
+	"block.windchimes.iron_chime": "鉄の風鈴",
+	"block.windchimes.bamboo_chime": "竹の風鈴",
+	"block.windchimes.copper_chime": "銅の風鈴",
+	"subtitles.block.windchimes.chime": "風鈴",
+	"modmenu.descriptionTranslation.windchimes": "このMODは、風に揺れて時々鳴る風鈴を3つ追加します。 バニラのゲームを補完するように設計されているため、このMODには設定できる項目はありません。",
+	"modmenu.summaryTranslation.windchimes": "風に揺れる優しいチャイム…"
+}
